@@ -1,0 +1,1105 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Competition Portfolio - PPT Design</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #141e30;
+            color: #fff;
+            overflow-x: hidden;
+        }
+        
+        .slides-container {
+            scroll-snap-type: y mandatory;
+            overflow-y: scroll;
+            height: 100vh;
+        }
+        
+        .slide {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            scroll-snap-align: start;
+            padding: 60px;
+            position: relative;
+            background: linear-gradient(135deg, #141e30 0%, #243b55 100%);
+        }
+        
+        /* 타이틀 슬라이드 */
+        .title-content {
+            text-align: center;
+            animation: fadeInUp 1s ease;
+        }
+        
+        .main-title {
+            font-size: 160px;
+            font-weight: 900;
+            margin-bottom: 40px;
+            letter-spacing: -2px;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 10px 30px rgba(102, 126, 234, 0.3));
+        }
+        
+        .subtitle {
+            font-size: 56px;
+            font-weight: 300;
+            opacity: 0.9;
+            margin-bottom: 60px;
+        }
+        
+        .author-info {
+            font-size: 44px;
+            opacity: 0.8;
+        }
+        
+        /* 섹션 컨테이너 */
+        .content-wrapper {
+            width: 100%;
+            max-width: 1600px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .section-title {
+            font-size: 96px;
+            margin-bottom: 80px;
+            text-align: center;
+            font-weight: 700;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 5px 15px rgba(102, 126, 234, 0.2));
+        }
+        /* 프로젝트 상세 페이지 스타일 */
+        .project-overview {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 30px;
+            padding: 50px;
+            backdrop-filter: blur(20px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .project-badge {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .project-period {
+            font-size: 20px;
+            color: #4ecdc4;
+            font-weight: 500;
+        }
+
+        .project-description {
+            margin-bottom: 40px;
+        }
+
+        .project-description h3 {
+            font-size: 32px;
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .project-description p {
+            font-size: 20px;
+            color: rgba(255, 255, 255, 0.85);
+            line-height: 1.6;
+        }
+
+        .project-details-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .detail-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .detail-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .detail-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+
+        .detail-card h4 {
+            font-size: 22px;
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+
+        .detail-card p {
+            font-size: 20px;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.5;
+        }
+
+        .project-approach h3 {
+            font-size: 32px;
+            color: white;
+            margin-bottom: 30px;
+        }
+
+        .approach-timeline {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+        }
+
+        .approach-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .step-number {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .step-content h5 {
+            font-size: 20px;
+            color: #4ecdc4;
+            margin-bottom: 10px;
+        }
+
+        .step-content p {
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        /* 리더보드 슬라이드 */
+        .leaderboard-split {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            width: 100%;
+        }
+        
+        .leaderboard-section {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            border-radius: 30px;
+            padding: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .leaderboard-section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 25px 70px rgba(0, 0, 0, 0.4);
+        }
+        
+        .leaderboard-header {
+            font-size: 48px;
+            margin-bottom: 35px;
+            color: #667eea;
+            font-weight: 600;
+        }
+        
+        .rank-item {
+            display: flex;
+            align-items: center;
+            padding: 25px 30px;
+            margin: 20px 0;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 18px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .rank-item:hover {
+            background: rgba(255, 255, 255, 0.04);
+            transform: translateX(5px);
+        }
+        
+        .rank-item.highlight {
+            background: linear-gradient(90deg, rgba(102, 126, 234, 0.15) 0%, rgba(118, 75, 162, 0.15) 100%);
+            border: 2px solid rgba(102, 126, 234, 0.5);
+            transform: scale(1.02);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.2);
+        }
+        
+        .rank-number {
+            font-size: 48px;
+            font-weight: 700;
+            margin-right: 30px;
+            color: #ffd700;
+            min-width: 70px;
+        }
+        
+        .team-info {
+            flex: 1;
+        }
+        
+        .team-name {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+        
+        .team-members {
+            display: flex;
+            gap: 8px;
+            opacity: 0.7;
+        }
+        
+        .member-icon {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .score {
+            font-size: 44px;
+            font-weight: 600;
+            color: #4ecdc4;
+        }
+        
+        /* 타임라인 슬라이드 */
+        .timeline-item {
+            display: flex;
+            margin: 40px 0;
+            width: 100%;
+            opacity: 0;
+            animation: slideIn 0.5s ease forwards;
+        }
+        
+        .timeline-item:nth-child(2) { animation-delay: 0.1s; }
+        .timeline-item:nth-child(3) { animation-delay: 0.2s; }
+        .timeline-item:nth-child(4) { animation-delay: 0.3s; }
+        
+        .timeline-date {
+            min-width: 200px;
+            text-align: right;
+            padding-right: 40px;
+            font-weight: 600;
+            color: #4ecdc4;
+            font-size: 32px;
+            opacity: 0.8;
+        }
+        
+        .timeline-content {
+            flex: 1;
+            padding: 35px 40px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 20px;
+            border-left: 5px solid #4ecdc4;
+            font-size: 28px;
+            line-height: 1.5;
+            color: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+            opacity: 0.85;
+        }
+        
+        .timeline-content:hover {
+            transform: translateX(10px);
+            background: rgba(255, 255, 255, 0.05);
+        }
+        
+        .timeline-content strong {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 30px;
+            color: rgba(255, 255, 255, 1);
+        }
+        
+        /* 차트 슬라이드 */
+        .chart-container {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 30px;
+            padding: 60px;
+            backdrop-filter: blur(20px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        
+        .chart-canvas-container {
+            width: 100%;
+            height: 450px;
+            position: relative;
+            margin-bottom: 50px;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 20px;
+            padding: 30px;
+        }
+        
+        .chart-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+        
+        .chart-stat-card {
+            background: rgba(255, 255, 255, 0.04);
+            padding: 35px;
+            border-radius: 20px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.3s ease;
+        }
+        
+        .chart-stat-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.06);
+            box-shadow: 0 15px 40px rgba(78, 205, 196, 0.15);
+        }
+        
+        .chart-stat-label {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 22px;
+            margin-bottom: 15px;
+        }
+        
+        .chart-stat-value {
+            color: #4ecdc4;
+            font-size: 44px;
+            font-weight: 700;
+        }
+        
+        /* 인사이트 슬라이드 */
+        .insights-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 50px;
+            width: 100%;
+        }
+        
+        .insight-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            border-radius: 30px;
+            padding: 50px 40px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.25);
+        }
+        
+        .insight-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            background: rgba(255, 255, 255, 0.05);
+            box-shadow: 0 25px 70px rgba(102, 126, 234, 0.25);
+        }
+        
+        .insight-icon {
+            font-size: 96px;
+            margin-bottom: 35px;
+            filter: drop-shadow(0 5px 15px rgba(255, 255, 255, 0.2));
+        }
+        
+        .insight-title {
+            font-size: 48px;
+            margin-bottom: 25px;
+            font-weight: 600;
+            color: #667eea;
+        }
+        
+        .insight-description {
+            font-size: 28px;
+            opacity: 0.85;
+            line-height: 1.6;
+        }
+        
+        /* 성과 요약 슬라이드 */
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 60px;
+            width: 100%;
+        }
+        
+        .result-box {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 35px;
+            padding: 80px 50px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(20px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            height: 350px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .result-box:hover {
+            transform: translateY(-15px) scale(1.03);
+            background: rgba(255, 255, 255, 0.05);
+            box-shadow: 0 30px 80px rgba(102, 126, 234, 0.3);
+            border: 1px solid rgba(102, 126, 234, 0.3);
+        }
+        
+        .result-label {
+            font-size: 38px;
+            opacity: 0.7;
+            margin-bottom: 35px;
+            font-weight: 400;
+        }
+        
+        .result-value {
+            font-size: 56px;
+            font-weight: 700;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 5px 15px rgba(102, 126, 234, 0.3));
+            line-height: 1.2;
+            word-break: keep-all;
+        }
+        
+        /* 애니메이션 */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        /* 네비게이션 */
+        .nav-dots {
+            position: fixed;
+            right: 30px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 100;
+        }
+        
+        .dot {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            margin: 20px 0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .dot:hover {
+            background: rgba(102, 126, 234, 0.5);
+            border-color: #667eea;
+            transform: scale(1.3);
+        }
+        
+        .dot.active {
+            background: #667eea;
+            transform: scale(1.5);
+            box-shadow: 0 0 20px rgba(102, 126, 234, 0.5);
+        }
+        
+        /* 슬라이드 번호 */
+        .slide-number {
+            position: absolute;
+            bottom: 40px;
+            right: 40px;
+            font-size: 24px;
+            opacity: 0.4;
+            font-weight: 300;
+        }
+        
+        /* 반응형 디자인 */
+        @media (max-width: 1400px) {
+            .content-wrapper {
+                max-width: 90%;
+            }
+            
+            .main-title {
+                font-size: 120px;
+            }
+            
+            .subtitle {
+                font-size: 48px;
+            }
+            
+            .section-title {
+                font-size: 72px;
+            }
+            
+            .insights-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .slide {
+                padding: 30px;
+            }
+            
+            .main-title {
+                font-size: 80px;
+            }
+            
+            .subtitle {
+                font-size: 32px;
+            }
+            
+            .section-title {
+                font-size: 48px;
+            }
+            
+            .leaderboard-split {
+                grid-template-columns: 1fr;
+            }
+            
+            .chart-stats {
+                grid-template-columns: 1fr;
+            }
+            
+            .results-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-dots">
+        <div class="dot active"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+    </div>
+    
+    <div class="slides-container">
+        <!-- 슬라이드 1: 타이틀 -->
+        <div class="slide slide-1">
+            <div class="title-content">
+                <h1 class="main-title">AI Competition</h1>
+                <p class="subtitle">머신러닝 대회 성과 포트폴리오</p>
+                <p class="author-info">문서연</p>
+            </div>
+            <div class="slide-number">1 / 7</div>
+        </div>
+        <!-- 슬라이드 5.5: 프로젝트 상세 -->
+<div class="slide slide-project">
+    <div class="content-wrapper">
+        <h2 class="section-title">🏠 House Price Prediction</h2>
+        <div class="project-overview">
+            <div class="project-header">
+                <div class="project-badge">머신러닝 경진대회</div>
+                <div class="project-period">2024년 9월 1일 - 9월 11일 (2주)</div>
+            </div>
+            
+            <div class="project-description">
+                <h3>프로젝트 개요</h3>
+                <p>서울시 아파트 실거래가 예측 모델 개발 대회로, 제공된 데이터셋을 활용하여 각 지역의 아파트 매매 실거래가를 정확하게 예측하는 regression 모델을 구축했습니다.</p>
+            </div>
+            
+            <div class="project-details-grid">
+                <div class="detail-card">
+                    <h4>목표</h4>
+                    <p>서울시 아파트 실거래가 예측</p>
+                </div>
+                <div class="detail-card">
+                    <h4>평가지표</h4>
+                    <p>RMSE<br>(Root Mean Squared Error)</p>
+                </div>
+            </div>
+            
+            <div class="project-approach">
+                <h3>접근 방법</h3>
+                <div class="approach-timeline">
+                    <div class="approach-item">
+                        <span class="step-number">1</span>
+                        <div class="step-content">
+                            <h5>데이터 분석</h5>
+                            <p>EDA 및 도메인 지식 기반 특성 파악</p>
+                        </div>
+                    </div>
+                    <div class="approach-item">
+                        <span class="step-number">2</span>
+                        <div class="step-content">
+                            <h5>피처 엔지니어링</h5>
+                            <p>추가 피처 생성 및 시계열 특성 추가</p>
+                        </div>
+                    </div>
+                    <div class="approach-item">
+                        <span class="step-number">3</span>
+                        <div class="step-content">
+                            <h5>모델 최적화</h5>
+                            <p>LightGBM 하이퍼파라미터 튜닝</p>
+                        </div>
+                    </div>
+                    <div class="approach-item">
+                        <span class="step-number">4</span>
+                        <div class="step-content">
+                            <h5>앙상블</h5>
+                            <p>다양한 모델 실험 및 조합</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="slide-number">2 / 7</div>
+</div>
+        <!-- 슬라이드 2: 리더보드 -->
+        <div class="slide slide-2">
+            <div class="content-wrapper">
+                <h2 class="section-title">🏆 Competition Leaderboard</h2>
+                <div class="leaderboard-split">
+                    <div class="leaderboard-section">
+                        <h3 class="leaderboard-header">초기 리더보드</h3>
+                        <div class="rank-item highlight">
+                            <span class="rank-number">1</span>
+                            <div class="team-info">
+                                <div class="team-name">AI16_ML_7조</div>
+                                <div class="team-members">
+                                    <span class="member-icon"></span>
+                                    <span class="member-icon"></span>
+                                    <span class="member-icon"></span>
+                                </div>
+                            </div>
+                            <span class="score">15219.4497</span>
+                        </div>
+                        <div class="rank-item">
+                            <span class="rank-number">2</span>
+                            <div class="team-info">
+                                <div class="team-name">ML_4조</div>
+                            </div>
+                            <span class="score">15946.6816</span>
+                        </div>
+                    </div>
+                    
+                    <div class="leaderboard-section">
+                        <h3 class="leaderboard-header">최종 리더보드</h3>
+                        <div class="rank-item highlight">
+                            <span class="rank-number">1</span>
+                            <div class="team-info">
+                                <div class="team-name">AI16_ML_7조</div>
+                                <div class="team-members">
+                                    <span class="member-icon"></span>
+                                    <span class="member-icon"></span>
+                                    <span class="member-icon"></span>
+                                </div>
+                            </div>
+                            <span class="score">11861.9779</span>
+                        </div>
+                        <div class="rank-item">
+                            <span class="rank-number">2</span>
+                            <div class="team-info">
+                                <div class="team-name">ML_1조</div>
+                            </div>
+                            <span class="score">12352.0521</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="slide-number">3 / 7</div>
+        </div>
+        
+        <!-- 슬라이드 3: 타임라인 -->
+        <div class="slide slide-3">
+            <div class="content-wrapper">
+                <h2 class="section-title">📈 대회 진행 타임라인</h2>
+                <div class="timeline-item">
+                    <div class="timeline-date">2025.09.05</div>
+                    <div class="timeline-content">
+                        <strong>첫 제출</strong>
+                        LightGBM 모델로 Public RMSE 17013.3450 기록
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2025.09.07</div>
+                    <div class="timeline-content">
+                        <strong>최종 제출 결정</strong>
+                        Public RMSE 15219.4497 달성 (자체 Public RMSE최고 성적, 팀 차원 second choice로 제출)
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2025.09.11</div>
+                    <div class="timeline-content">
+                        <strong>대회 종료</strong>
+                        총 21회 제출
+                    </div>
+                </div>
+            </div>
+            <div class="slide-number">4 / 7</div>
+        </div>
+        
+        <!-- 슬라이드 4: 차트 -->
+        <div class="slide slide-4">
+            <div class="content-wrapper">
+                <h2 class="section-title">📊 RMSE Score Trend</h2>
+                <div class="chart-container">
+                    <div class="chart-canvas-container">
+                        <canvas id="scoreChart"></canvas>
+                    </div>
+                    
+                    <div class="chart-stats">
+                        <div class="chart-stat-card">
+                            <div class="chart-stat-label">최고 Public RMSE</div>
+                            <div class="chart-stat-value">15,219</div>
+                        </div>
+                        <div class="chart-stat-card">
+                            <div class="chart-stat-label">최고 Private RMSE</div>
+                            <div class="chart-stat-value">14,130</div>
+                        </div>
+                        <div class="chart-stat-card">
+                            <div class="chart-stat-label">주 사용 모델</div>
+                            <div class="chart-stat-value">LightGBM</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="slide-number">5 / 7</div>
+        </div>
+        
+        <!-- 슬라이드 5: 인사이트 -->
+        <div class="slide slide-5">
+            <div class="content-wrapper">
+                <h2 class="section-title">💡 핵심 인사이트</h2>
+                <div class="insights-grid">
+                    <div class="insight-card">
+                        <div class="insight-icon">💡</div>
+                        <h3 class="insight-title">정량적 성과</h3>
+                        <p class="insight-description">
+                            대회 초반부터 중반까지<br>
+                            리더보드 1위 유지<br>
+                            첫 머신러닝 도전 성공
+                        </p>
+                    </div>
+                    <div class="insight-card">
+                        <div class="insight-icon">🎯</div>
+                        <h3 class="insight-title">기술적 접근</h3>
+                        <p class="insight-description">
+                            도메인 지식 기반<br>
+                            LightGBM 모델 최적화<br>
+                            모델 학습에 시간가중치 부여
+                        </p>
+                    </div>
+                    <div class="insight-card">
+                        <div class="insight-icon">📚</div>
+                        <h3 class="insight-title">학습 포인트</h3>
+                        <p class="insight-description">
+                            충분한 양의 학습데이터 필요<br>
+                            지속적 실험의 중요성<br>
+                            금리자료 누락의 아쉬움
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="slide-number">6 / 7</div>
+        </div>
+        
+        <!-- 슬라이드 6: 성과 요약 -->
+        <div class="slide slide-6">
+            <div class="content-wrapper">
+                <h2 class="section-title">최종 성과</h2>
+                <div class="results-grid">
+                    <div class="result-box">
+                        <div class="result-label">최고 Public RMSE</div>
+                        <div class="result-value">15,219</div>
+                    </div>
+                    <div class="result-box">
+                        <div class="result-label">최고 Private RMSE</div>
+                        <div class="result-value">14,130</div>
+                    </div>
+                    <div class="result-box">
+                        <div class="result-label">주 사용 모델</div>
+                        <div class="result-value">LightGBM</div>
+                    </div>
+                </div>
+            </div>
+            <div class="slide-number">7 / 7</div>
+        </div>
+    </div>
+    
+    <script>
+        // 스크롤 기반 네비게이션
+        const slides = document.querySelectorAll('.slide');
+        const dots = document.querySelectorAll('.dot');
+        const container = document.querySelector('.slides-container');
+        
+        // Intersection Observer로 현재 슬라이드 감지
+        const observerOptions = {
+            root: container,
+            rootMargin: '0px',
+            threshold: 0.5
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const slideIndex = Array.from(slides).indexOf(entry.target);
+                    dots.forEach((dot, index) => {
+                        dot.classList.toggle('active', index === slideIndex);
+                    });
+                }
+            });
+        }, observerOptions);
+        
+        slides.forEach(slide => observer.observe(slide));
+        
+        // 점 클릭으로 슬라이드 이동
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                slides[index].scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+        
+        // 키보드 네비게이션
+        document.addEventListener('keydown', (e) => {
+            const currentSlide = Array.from(slides).findIndex(slide => {
+                const rect = slide.getBoundingClientRect();
+                return rect.top >= -100 && rect.top <= 100;
+            });
+            
+            if (e.key === 'ArrowDown' && currentSlide < slides.length - 1) {
+                slides[currentSlide + 1].scrollIntoView({ behavior: 'smooth' });
+            } else if (e.key === 'ArrowUp' && currentSlide > 0) {
+                slides[currentSlide - 1].scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+        
+        // Chart.js 초기화
+        document.addEventListener('DOMContentLoaded', function() {
+            const ctx = document.getElementById('scoreChart');
+            if (ctx) {
+                // 데이터 준비
+                const dates = [
+                    '09-05 12:12', '09-05 15:16', '09-05 21:14', '09-05 22:33',
+                    '09-06 02:44', '09-06 16:43', '09-06 17:03', '09-06 17:06',
+                    '09-07 12:57', '09-07 20:43', '09-07 21:27', '09-07 22:11',
+                    '09-08 09:13', '09-08 20:31', '09-10 02:01', '09-10 02:39',
+                    '09-10 03:04', '09-10 23:25', '09-11 11:59'
+                ];
+                
+                const publicScores = [
+                    17013.3450, 16906.0106, 18587.6257, 17949.2595,
+                    17281.3922, 16161.1275, 17012.8380, 16841.4091,
+                    16056.9743, 16872.7442, 15219.4497, 15997.4557,
+                    15899.3964, 25860.1076, 15706.5197, 15794.7001,
+                    15790.9348, 27316.7617, 15761.4969
+                ];
+                
+                const privateScores = [
+                    14357.0440, 14192.3673, 15063.6288, 15251.0962,
+                    14130.4687, 14258.5735, 14200.4391, 14330.2513,
+                    15211.3461, 15414.7499, 15381.2981, 14821.0361,
+                    14635.7966, 22998.0005, 14426.9141, 15038.0940,
+                    14699.4904, 21423.7250, 14965.2771
+                ];
+
+                // 차트 생성
+                const chart = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: dates,
+                        datasets: [{
+                            label: 'Public RMSE',
+                            data: publicScores,
+                            borderColor: '#667eea',
+                            backgroundColor: 'rgba(102, 126, 234, 0.1)',
+                            borderWidth: 2,
+                            pointRadius: 3,
+                            pointHoverRadius: 6,
+                            tension: 0
+                        }, {
+                            label: 'Private RMSE',
+                            data: privateScores,
+                            borderColor: '#764ba2',
+                            backgroundColor: 'rgba(118, 75, 162, 0.1)',
+                            borderWidth: 2,
+                            pointRadius: 3,
+                            pointHoverRadius: 6,
+                            tension: 0
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        interaction: {
+                            mode: 'index',
+                            intersect: false,
+                        },
+                        plugins: {
+                            title: {
+                                display: false
+                            },
+                            legend: {
+                                display: true,
+                                position: 'top',
+                                labels: {
+                                    padding: 20,
+                                    font: {
+                                        size: 16
+                                    },
+                                    color: 'rgba(255, 255, 255, 0.8)',
+                                    usePointStyle: true,
+                                    pointStyle: 'circle'
+                                }
+                            },
+                            tooltip: {
+                                backgroundColor: 'rgba(20, 30, 48, 0.95)',
+                                padding: 16,
+                                displayColors: true,
+                                borderColor: 'rgba(255, 255, 255, 0.1)',
+                                borderWidth: 1,
+                                titleFont: {
+                                    size: 14
+                                },
+                                bodyFont: {
+                                    size: 13
+                                },
+                                callbacks: {
+                                    label: function(context) {
+                                        let label = context.dataset.label || '';
+                                        if (label) {
+                                            label += ': ';
+                                        }
+                                        label += context.parsed.y.toLocaleString('ko-KR', {maximumFractionDigits: 4});
+                                        
+                                        // 최종 제출 표시
+                                        if (context.dataIndex === 10) {
+                                            label += ' ★최종';
+                                        }
+                                        return label;
+                                    }
+                                }
+                            }
+                        },
+                        scales: {
+                            x: {
+                                display: true,
+                                title: {
+                                    display: true,
+                                    text: '제출 일시',
+                                    font: {
+                                        size: 16
+                                    },
+                                    color: 'rgba(255, 255, 255, 0.7)'
+                                },
+                                ticks: {
+                                    maxRotation: 45,
+                                    minRotation: 45,
+                                    font: {
+                                        size: 12
+                                    },
+                                    color: 'rgba(255, 255, 255, 0.5)'
+                                },
+                                grid: {
+                                    display: false
+                                }
+                            },
+                            y: {
+                                display: true,
+                                title: {
+                                    display: true,
+                                    text: 'RMSE Score',
+                                    font: {
+                                        size: 16
+                                    },
+                                    color: 'rgba(255, 255, 255, 0.7)'
+                                },
+                                ticks: {
+                                    callback: function(value) {
+                                        return value.toLocaleString('ko-KR');
+                                    },
+                                    font: {
+                                        size: 12
+                                    },
+                                    color: 'rgba(255, 255, 255, 0.5)'
+                                },
+                                grid: {
+                                    color: 'rgba(255, 255, 255, 0.08)'
+                                }
+                            }
+                        }
+                    }
+                });
+
+                // 최종 제출 포인트 강조
+                chart.data.datasets[0].pointBackgroundColor = publicScores.map((_, index) => 
+                    index === 10 ? '#ff6b6b' : '#667eea'
+                );
+                chart.data.datasets[0].pointRadius = publicScores.map((_, index) => 
+                    index === 10 ? 5 : 3
+                );
+                
+                chart.data.datasets[1].pointBackgroundColor = privateScores.map((_, index) => 
+                    index === 10 ? '#ff6b6b' : '#764ba2'
+                );
+                chart.data.datasets[1].pointRadius = privateScores.map((_, index) => 
+                    index === 10 ? 5 : 3
+                );
+                
+                chart.update();
+            }
+        });
+    </script>
+</body>
+</html>
